@@ -74,6 +74,7 @@ class Message
         $i = 0;
         foreach ($this->vars as $var)
         {
+            $var[1] = str_replace("&", "", $var[1]);
             if(++$i === $numItems)
                 $varsDeclaration = $varsDeclaration . "\t" . $var[1] . " " . $var[0] . ";";
             else
@@ -316,7 +317,7 @@ class Message
         $type = str_replace("\r", "", $type);
         $type = str_replace("\n", "", $type);
         array_push($this->custom_incs, $type . ".hpp");
-        return $type;
+        return $type . "&";
     }
 
     function parse_variables()

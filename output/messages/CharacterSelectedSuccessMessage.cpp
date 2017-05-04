@@ -1,6 +1,6 @@
 #include "CharacterSelectedSuccessMessage.hpp"
 
-CharacterSelectedSuccessMessage::CharacterSelectedSuccessMessage(CharacterBaseInformations infos, bool isCollectingStats)
+CharacterSelectedSuccessMessage::CharacterSelectedSuccessMessage(CharacterBaseInformations& infos, bool isCollectingStats)
 {
 	this->infos = infos;
 this->isCollectingStats = isCollectingStats;

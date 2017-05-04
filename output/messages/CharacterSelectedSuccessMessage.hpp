@@ -9,7 +9,7 @@
 class CharacterSelectedSuccessMessage : public IMessage
 {
 public:
-	CharacterSelectedSuccessMessage(CharacterBaseInformations infos, bool isCollectingStats);
+	CharacterSelectedSuccessMessage(CharacterBaseInformations& infos, bool isCollectingStats);
 	CharacterSelectedSuccessMessage();
 	ushort getId();
 	std::string getName();
