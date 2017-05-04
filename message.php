@@ -142,6 +142,7 @@ class Message
                 $line = str_replace("BooleanByteWrapper.", "BooleanByteWrapper::", $line);
                 $line = str_replace("push", "push_back", $line);
                 $line = str_replace("writeBoolean", "writeBool", $line);
+                $line = str_replace("getTypeId", "getId", $line);
                 if (strstr($line, "var"))
                 {
                     $var_name = explode("var ", $line);
@@ -160,6 +161,17 @@ class Message
                     if (strlen($line) == 8) // une simple accollade
                         continue;
                 }
+                if (strstr($line, " as "))
+                {
+                    $ex = explode("as", $line);
+                    $end = explode(")", $ex[1]);
+                    $type = trim($end[0]);
+                    $to_erase = " as " . $type;
+                    $line = str_replace($to_erase, "", $line);
+                    //echo $to_erase . " \n";
+                    //break;
+                }
+
                 $data = $data . $line;
 
                 if ($accolade_end >= $accolade)
@@ -220,9 +232,14 @@ class Message
                     }
                     else
                     {
+                        $type = explode(":", $line);
+                        $type = explode(" ", $type[1]);
                         $var_name = explode("var ", $line);
                         $var_name = explode(":", $var_name[1]);
-                        $line = "\tint " . $var_name[0] . " = 0;\n";
+                        if ($type[0] == "int" || $type[0] == "uint")
+                            $line = "\tint " . $var_name[0] . " = 0;\n";
+                        else
+                            $line = "\t" . $type[0] . " " . $var_name[0] . ";\n";
                     } 
                 }
 
@@ -237,7 +254,8 @@ class Message
                 }
                 if (strstr($line, "new"))
                     continue;
-
+                if (strstr($line, "getInstance"))
+                    continue;
                 $data = $data . $line;
                 if ($accolade_end >= $accolade)
                     break;

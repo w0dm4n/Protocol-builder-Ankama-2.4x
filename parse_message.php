@@ -15,7 +15,7 @@ function parse_message()
             $i++;
         }
     }
-    echo $i . " packets generated !\n";
+    //echo $i . " packets generated !\n";
 }
 
 ?>

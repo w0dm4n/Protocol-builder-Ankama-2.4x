@@ -5,6 +5,11 @@ GameContextCreateRequestMessage::GameContextCreateRequestMessage()
 	
 }
 
+GameContextCreateRequestMessage::GameContextCreateRequestMessage()
+{
+
+}
+
 ushort GameContextCreateRequestMessage::getId()
 {
 	return id;

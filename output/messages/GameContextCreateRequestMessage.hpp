@@ -9,6 +9,7 @@ class GameContextCreateRequestMessage : public IMessage
 {
 public:
 	GameContextCreateRequestMessage();
+	GameContextCreateRequestMessage();
 	ushort getId();
 	std::string getName();
 	void serialize(BinaryWriter& writer);
