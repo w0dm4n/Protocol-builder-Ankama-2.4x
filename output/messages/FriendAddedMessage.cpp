@@ -23,10 +23,10 @@ std::string FriendAddedMessage::getName()
 
 void FriendAddedMessage::serialize(BinaryWriter& writer)
 {
-	         writer.writeShort(this->friendAdded.getTypeId());         this->friendAdded.serialize(writer);      
+	         writer.writeShort(this->friendAdded.getId());         this->friendAdded.serialize(writer);      
 }
 
 void FriendAddedMessage::deserialize(BinaryReader& reader)
 {
-	      {	int _loc2_ = reader.readUnsignedShort();         this->friendAdded = ProtocolTypeManager.getInstance(FriendInformations,_loc2_);         this->friendAdded.deserialize(reader);      }
+	      {	int _loc2_ = reader.readUnsignedShort();         this->friendAdded.deserialize(reader);      }
 }

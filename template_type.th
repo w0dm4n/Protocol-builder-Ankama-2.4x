@@ -1,0 +1,31 @@
+#include "%name%.hpp"
+
+%name%::%name%(%vars_method%)
+{
+	%vars_method_setter%
+}
+
+%name%::%name%()
+{
+
+}
+
+ushort %name%::getId()
+{
+	return __id;
+}
+
+std::string %name%::getName()
+{
+	return "%name%";
+}
+
+void %name%::serialize(BinaryWriter& writer)
+{
+	%write_data%
+}
+
+void %name%::deserialize(BinaryReader& reader)
+{
+	%read_data%
+}

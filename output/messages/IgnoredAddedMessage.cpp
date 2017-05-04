@@ -24,10 +24,10 @@ std::string IgnoredAddedMessage::getName()
 
 void IgnoredAddedMessage::serialize(BinaryWriter& writer)
 {
-	         writer.writeShort(this->ignoreAdded.getTypeId());         this->ignoreAdded.serialize(writer);         writer.writeBool(this->session);      
+	         writer.writeShort(this->ignoreAdded.getId());         this->ignoreAdded.serialize(writer);         writer.writeBool(this->session);      
 }
 
 void IgnoredAddedMessage::deserialize(BinaryReader& reader)
 {
-	      {	int _loc2_ = reader.readUnsignedShort();         this->ignoreAdded = ProtocolTypeManager.getInstance(IgnoredInformations,_loc2_);         this->ignoreAdded.deserialize(reader);         this->session = reader.readBool();      }
+	      {	int _loc2_ = reader.readUnsignedShort();         this->ignoreAdded.deserialize(reader);         this->session = reader.readBool();      }
 }

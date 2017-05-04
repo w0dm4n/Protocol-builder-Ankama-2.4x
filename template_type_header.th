@@ -1,0 +1,25 @@
+#pragma once
+#ifndef %name_upper%_HPP
+#define %name_upper%_HPP
+
+#include "IType.hpp"
+%customs_includes%
+
+class %name% : public IType
+{
+public:
+	%name%(%vars_method%);
+	%name%();
+	ushort getId();
+	std::string getName();
+	void serialize(BinaryWriter& writer);
+	void deserialize(BinaryReader& reader);
+
+	static const int __id = %id%;
+
+	/*VARS*/
+%vars_declarations%
+};
+
+
+#endif

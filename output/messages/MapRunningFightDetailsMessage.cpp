@@ -26,17 +26,17 @@ std::string MapRunningFightDetailsMessage::getName()
 void MapRunningFightDetailsMessage::serialize(BinaryWriter& writer)
 {
 	         writer.writeInt(this->fightId);         writer.writeShort(this->attackers.size());	int _loc2_ = 0;
-         while(_loc2_ < this->attackers.size())         {            writer.writeShort((this->attackers[_loc2_] as GameFightFighterLightInformations).getTypeId());            (this->attackers[_loc2_] as GameFightFighterLightInformations).serialize(writer);            _loc2_++;         }         writer.writeShort(this->defenders.size());	int _loc3_ = 0;
-         while(_loc3_ < this->defenders.size())         {            writer.writeShort((this->defenders[_loc3_] as GameFightFighterLightInformations).getTypeId());            (this->defenders[_loc3_] as GameFightFighterLightInformations).serialize(writer);            _loc3_++;         }      
+         while(_loc2_ < this->attackers.size())         {            writer.writeShort((this->attackers[_loc2_]).getId());            (this->attackers[_loc2_]).serialize(writer);            _loc2_++;         }         writer.writeShort(this->defenders.size());	int _loc3_ = 0;
+         while(_loc3_ < this->defenders.size())         {            writer.writeShort((this->defenders[_loc3_]).getId());            (this->defenders[_loc3_]).serialize(writer);            _loc3_++;         }      
 }
 
 void MapRunningFightDetailsMessage::deserialize(BinaryReader& reader)
 {
 	      {	int _loc6_ = 0;
-	int _loc7_ = 0;
+	GameFightFighterLightInformations _loc7_;
 	int _loc8_ = 0;
-	int _loc9_ = 0;
+	GameFightFighterLightInformations _loc9_;
          this->fightId = reader.readInt();	int _loc2_ = reader.readUnsignedShort();	int _loc3_ = 0;
-         while(_loc3_ < _loc2_)         {            _loc6_ = reader.readUnsignedShort();            _loc7_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc6_);            _loc7_.deserialize(reader);            this->attackers.push_back(_loc7_);            _loc3_++;         }	int _loc4_ = reader.readUnsignedShort();	int _loc5_ = 0;
-         while(_loc5_ < _loc4_)         {            _loc8_ = reader.readUnsignedShort();            _loc9_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc8_);            _loc9_.deserialize(reader);            this->defenders.push_back(_loc9_);            _loc5_++;         }      }
+         while(_loc3_ < _loc2_)         {            _loc6_ = reader.readUnsignedShort();            _loc7_.deserialize(reader);            this->attackers.push_back(_loc7_);            _loc3_++;         }	int _loc4_ = reader.readUnsignedShort();	int _loc5_ = 0;
+         while(_loc5_ < _loc4_)         {            _loc8_ = reader.readUnsignedShort();            _loc9_.deserialize(reader);            this->defenders.push_back(_loc9_);            _loc5_++;         }      }
 }
